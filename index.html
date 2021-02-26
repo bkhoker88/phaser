@@ -45,6 +45,8 @@
         this.load.image('lamp', 'assets/lamp.png');
         this.load.image('bookcase', 'assets/bookcase.png');
         this.load.image('art', 'assets/art.png');
+        this.load.image('gameover', 'assets/gameover.png');
+        this.load.image('realrocko', 'assets/realrocko.png');
 
         this.load.image('star', 'assets/chicken2.png');
         this.load.image('bomb', 'assets/garbage.png');
@@ -133,7 +135,7 @@
 
       function update() {
         if (gameOver) {
-          return;
+          return this.add.image(1340, 350, 'realrocko');
         }
         if (cursors.left.isDown) {
           player.setVelocityX(-160);
@@ -191,10 +193,7 @@
         player.setTint(0xff0000);
 
         player.anims.play('turn');
-
-        if (scoreText > highScore) {
-          highScore = scoreText;
-        }
+        this.add.image(565, 350, 'gameover');
 
         gameOver = true;
       }
