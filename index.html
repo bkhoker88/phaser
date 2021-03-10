@@ -3,7 +3,8 @@
   <head>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
   </head>
-  <h1>Rockos Ruckas</h1>
+  
+  <h1>Rockos Ruckus</h1>
   <body>
     <script>
       var config = {
@@ -110,7 +111,7 @@
         stars = this.physics.add.group({
           key: 'star',
           repeat: 20,
-          setXY: { x: 12, y: 10, stepX: 70 },
+          setXY: { x: 12, y: 0, stepX: 70 },
         });
 
         stars.children.iterate(function (child) {
@@ -152,7 +153,7 @@
         }
 
         if (cursors.up.isDown && player.body.touching.down) {
-          player.setVelocityY(-400);
+          player.setVelocityY(-410);
         }
       }
 
@@ -199,4 +200,5 @@
       }
     </script>
   </body>
+  <p>Get all the Treats! or rocko wont be happy with you</p>
 </html>
