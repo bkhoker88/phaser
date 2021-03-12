@@ -26,6 +26,7 @@ var gameOver = false;
 var scoreText;
 var highScore;
 var chocolate;
+var background;
 
 // functions //
 function movechocolate(chocolate, speed) {
@@ -95,7 +96,7 @@ function preload() {
   this.load.image('chocolate', 'assets/chocolate.png');
   this.load.image('star', 'assets/chicken2.png');
   this.load.image('bomb', 'assets/garbage.png');
-  this.load.spritesheet('dude', 'assets/rocko.png', {
+  background = this.load.spritesheet('dude', 'assets/rocko.png', {
     frameWidth: 32,
     frameHeight: 48,
   });
@@ -107,8 +108,11 @@ function create() {
   this.add.image(400, 300, 'chocolate');
   this.add.image(1125, 300, 'sky');
   this.add.image(400, 300, 'star');
-  this.add.image(400, 300, 'sky');
+  this.add.tileSprite(0, 300, config.width, config.height, 'sky');
   this.add.image(1450, 220, 'bookcase');
+
+  // background = this.physics.add.tileSprite(0, 300, 'sky')
+
   platforms = this.physics.add.staticGroup();
 
   platforms.create(700, 1150, 'ground').setScale(1.5).refreshBody();
@@ -123,6 +127,7 @@ function create() {
 
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
+
 
   this.anims.create({
     key: 'left',
@@ -158,9 +163,10 @@ function create() {
   });
 
    chocolate.children.iterate(function (child) {
-         child.setVelocity(Phaser.Math.Between(-200, 400), 20);
-         child.allowGravity = false;
+     child.setVelocity(Phaser.Math.Between(-200, 400), 20);
+     child.allowGravity = false;
    });
+
 
   stars = this.physics.add.group({
     key: 'star',
@@ -192,11 +198,15 @@ function create() {
 function update() {
   movechocolate(chocolate, 50);
 
+  background.tilePositionY -= 100;
+
+
   if (gameOver) {
     return this.add.image(1340, 350, 'realrocko');
   }
   if (cursors.left.isDown) {
     player.setVelocityX(-160);
+    background.tilePositionY -= 100;
 
     player.anims.play('left', true);
   } else if (cursors.right.isDown) {
