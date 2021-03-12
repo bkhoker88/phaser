@@ -4,20 +4,20 @@ let game;
 let gameOptions = {
     platformSpeedRange: [300, 400],
     spawnRange: [80, 300],
-    platformSizeRange: [90, 300],
-    platformHeightRange: [-10, 10],
+    platformSizeRange: [100, 300],
+    platformHeightRange: [-50, 50],
     platformHeighScale: 10,
-    platformVerticalLimit: [0.4, 0.8],
+    platformVerticalLimit: [0.2, 0.9],
     playerGravity: 900,
     jumpForce: 500,
     playerStartPosition: 200,
-    jumps: 2
+    jumps: 10
 }
 
 window.onload = function() {
     let gameConfig = {
         type: Phaser.AUTO,
-        width: 1334,
+        width: 1500,
         height: 750,
         scene: playGame,
         backgroundColor: 0x87CEEB,
@@ -36,13 +36,23 @@ class playGame extends Phaser.Scene{
         super("PlayGame");
     }
     preload(){
-        this.load.image("platform", "assets/platform.png");
+        this.load.image("platform", "assets/hedge.png");
+        // this.load.image('sky', 'assets/park.jpg');
+        this.load.image('star', 'assets/chicken2.png');
         this.load.spritesheet("player", "assets/rocko.png", {
-            frameWidth: 24,
-            frameHeight: 48
+            frameWidth: 144,
+            frameHeight: 192
         });
+
+         this.load.image('grass', 'assets/grassfield.png');
     }
     create(){
+        this.add.image(400, 300, 'star');
+        this.add.image(400,300, "grass")
+        this.add.image(1000, 300, 'grass');
+
+
+
         this.platformGroup = this.add.group({
             removeCallback: function(platform){
                 platform.scene.platformPool.add(platform)
@@ -68,8 +78,8 @@ class playGame extends Phaser.Scene{
         this.anims.create({
             key: "run",
             frames: this.anims.generateFrameNumbers("player", {
-                start: 8,
-                end: 11
+                start: 0,
+                end: 20
             }),
             frameRate: 25,
             repeat: -2

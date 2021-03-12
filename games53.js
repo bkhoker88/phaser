@@ -86,7 +86,7 @@ function preload() {
   this.load.image('sky', 'assets/livingroom.jpg');
   this.load.image('ground', 'assets/platform2.png');
   this.load.image('couch', 'assets/sofa3.png');
-  this.load.image('shelf', 'assets/table.png');
+ 
   this.load.image('books', 'assets/books.png');
   this.load.image('lamp', 'assets/lamp.png');
   this.load.image('bookcase', 'assets/bookcase.png');
